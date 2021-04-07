@@ -8,10 +8,11 @@ export abstract class Shape {
 
   abstract getType(): string;
 
-  constructor(points: Point[]);
-  constructor(points: Point[], color: string, filled: boolean);
-
-  constructor(points: Point[], color = 'green', filled = true) {
+  constructor(
+    points: Point[],
+    color: string = 'green',
+    filled: boolean = true
+  ) {
     this.validateInputs(points);
 
     this.points = points;

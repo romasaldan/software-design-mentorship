@@ -30,7 +30,9 @@ export class Triangle extends Shape {
       case 3:
         return 'scalene triangle';
       default:
-        return '';
+        throw Error(
+          'something wrong with your code, the number of distances can not be more than three for a triangle'
+        );
     }
   }
 

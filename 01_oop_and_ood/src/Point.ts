@@ -5,10 +5,7 @@ export class Point {
   public y: number;
   private safeFloatService = new SafeFloatService();
 
-  constructor();
-  constructor(x: number, y: number);
-
-  constructor(x = 0, y = 0) {
+  constructor(x: number = 0, y: number = 0) {
     this.x = x;
     this.y = y;
   }
@@ -26,7 +23,7 @@ export class Point {
       return this.calculateDistanceToPoint(a);
     }
 
-    if (typeof a === 'number' && typeof a === 'number') {
+    if (typeof a === 'number') {
       return this.calculateDistanceToPoint(new Point(a, b));
     }
 
