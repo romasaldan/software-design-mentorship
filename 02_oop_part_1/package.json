@@ -1,0 +1,16 @@
+{
+  "name": "02_oop_part_1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "usage.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ts": "ts-node ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
+  }
+}
