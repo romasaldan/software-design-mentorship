@@ -1,14 +1,24 @@
 import {Item} from './Item';
 
 export abstract class Weapon extends Item {
-  private baseDamage: number;
-  private damageModifier: number;
-  private baseDurability: number;
-  private durabilityModifier: number;
-  private MODIFIER_CHANGE_RATE: number;
+  protected baseDamage: number;
+  protected damageModifier = 0;
+  protected baseDurability: number;
+  protected durabilityModifier = 0;
+  protected MODIFIER_CHANGE_RATE = 0.05;
+  private lostDurability = 0;
 
-  constructor() {
-    super();
+  constructor(
+    name: string,
+    baseDamage: number,
+    baseDurability: number,
+    value: number,
+    weight: number
+  ) {
+    super(name, value, weight);
+
+    this.baseDamage = baseDamage;
+    this.baseDurability = baseDurability;
   }
 
   public getDamage() {
@@ -26,8 +36,30 @@ export abstract class Weapon extends Item {
   }
 
   public use() {
-    return `You use the ${this.getName} , dealing ${this.formatNumber(
+    if (this.getCurrentDurability() <= 0) {
+      return `You can't use the ${this.getName()}, it is broken.`;
+    } else {
+      this.changeLostDurability();
+
+      if (this.getCurrentDurability() > 0) {
+        return this.getDamageMessage();
+      } else {
+        return `${this.getDamageMessage()}. The ${this.getName()} breaks.`;
+      }
+    }
+  }
+
+  private getDamageMessage() {
+    return `You use the ${this.getName()}, dealing ${this.formatNumber(
       this.getDamage()
     )} points of damage.`;
+  }
+
+  private getCurrentDurability() {
+    return this.getDurability() - this.lostDurability;
+  }
+
+  private changeLostDurability() {
+    this.lostDurability += this.MODIFIER_CHANGE_RATE;
   }
 }
