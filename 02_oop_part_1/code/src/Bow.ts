@@ -11,9 +11,10 @@ export class Bow extends Weapon {
   }
 
   public polish(): void {
-    this.durabilityModifier = Math.min(
-      this.MODIFIER_CHANGE_RATE + this.durabilityModifier,
-      1
-    );
+    if (this.getDurability() + this.MODIFIER_CHANGE_RATE < 1) {
+      this.durabilityModifier += this.MODIFIER_CHANGE_RATE;
+    } else {
+      this.durabilityModifier = 1 - this.baseDurability;
+    }
   }
 }
