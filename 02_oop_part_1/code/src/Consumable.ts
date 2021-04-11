@@ -1,6 +1,6 @@
 import {Item} from './Item';
 
-export abstract class Consumable extends Item {
+export class Consumable extends Item {
   private spoiled = false;
   private consumed = false;
 
@@ -12,10 +12,10 @@ export abstract class Consumable extends Item {
 
   public eat(): string {
     if (this.spoiled) {
-      return this.getEatenMessage();
-    } else {
       return `${this.getEatenMessage()}
 You fell sick.`;
+    } else {
+      return this.getEatenMessage();
     }
   }
 
@@ -41,9 +41,5 @@ You fell sick.`;
 
   public isSpoiled(): boolean {
     return this.spoiled;
-  }
-
-  toString() {
-    return '';
   }
 }

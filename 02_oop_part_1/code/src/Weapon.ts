@@ -26,7 +26,23 @@ export abstract class Weapon extends Item {
   }
 
   public getDurability(): number {
-    return this.baseDurability + this.durabilityModifier;
+    return this.baseDurability + this.durabilityModifier - this.lostDurability;
+  }
+
+  protected setDamageModifier(damageModifier: number): void {
+    this.damageModifier = damageModifier
+  }
+
+  protected setDurabilityModifier(durabilityModifier: number): void {
+    this.durabilityModifier = durabilityModifier
+  }
+
+  protected getDurabilityModifier(): number {
+    return this.durabilityModifier
+  }
+
+  protected getDamageModifier(): number {
+    return this.damageModifier 
   }
 
   toString() {
@@ -36,16 +52,20 @@ export abstract class Weapon extends Item {
   }
 
   public use(): string {
-    if (this.getCurrentDurability() <= 0) {
+    if (this.getDurability() <= 0) {
       return `You can't use the ${this.getName()}, it is broken.`;
     } else {
-      this.changeLostDurability();
+      return this.applyWeapon()
+    }
+  }
 
-      if (this.getCurrentDurability() > 0) {
-        return this.getDamageMessage();
-      } else {
-        return `${this.getDamageMessage()} The ${this.getName()} breaks.`;
-      }
+  private applyWeapon() {
+    this.changeLostDurability();
+
+    if (this.getDurability() > 0) {
+      return this.getDamageMessage();
+    } else {
+      return `${this.getDamageMessage()} The ${this.getName()} breaks.`;
     }
   }
 
@@ -55,11 +75,9 @@ export abstract class Weapon extends Item {
     )} points of damage.`;
   }
 
-  private getCurrentDurability(): number {
-    return this.getDurability() - this.lostDurability;
-  }
-
   private changeLostDurability(): void {
     this.lostDurability += this.MODIFIER_CHANGE_RATE;
   }
+
+  public abstract polish():void
 }

@@ -18,7 +18,7 @@ export class Pizza extends Consumable {
         this.setConsumed(true);
       }
 
-      return 'You eat a slice of the pizza';
+      return 'You eat a slice of the pizza.';
     }
 
     return '';

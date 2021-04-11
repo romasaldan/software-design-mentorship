@@ -1,6 +1,6 @@
 import {Comparable} from './Comparable';
 
-let numberOfItems = 0;
+let counter = 0;
 
 export abstract class Item implements Comparable<Item> {
   private readonly PRECISION = 2;
@@ -10,12 +10,19 @@ export abstract class Item implements Comparable<Item> {
   private name: string;
 
   constructor(name: string, value: number, weight: number) {
-    this.id = numberOfItems;
-    numberOfItems++;
+    this.id = Item.numberOfItems++;
 
     this.name = name;
     this.value = value;
     this.weight = weight;
+  }
+
+  static get numberOfItems() {
+    return counter
+  }
+
+  static set numberOfItems(number: number) {
+    counter = number
   }
 
   public compareTo(other: Item): number {
@@ -29,7 +36,7 @@ export abstract class Item implements Comparable<Item> {
   }
 
   protected formatNumber(number: number): string {
-    return String(Math.round(number * this.PRECISION) / this.PRECISION);
+    return String(Math.round(number * 10 ** this.PRECISION) / 10 ** this.PRECISION);
   }
 
   toString() {
@@ -67,6 +74,6 @@ export abstract class Item implements Comparable<Item> {
   }
 
   public static reset(): void {
-    numberOfItems = 0;
+    Item.numberOfItems = 0;
   }
 }
