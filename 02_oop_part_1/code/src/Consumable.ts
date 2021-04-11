@@ -10,7 +10,7 @@ export abstract class Consumable extends Item {
     this.spoiled = spoiled;
   }
 
-  public eat() {
+  public eat(): string {
     if (this.spoiled) {
       return this.getEatenMessage();
     } else {
@@ -19,11 +19,11 @@ You fell sick.`;
     }
   }
 
-  private getEatenMessage() {
+  private getEatenMessage(): string {
     return `You eat the ${this.getName()}.`;
   }
 
-  public use() {
+  public use(): string {
     if (this.consumed) {
       return `There is nothing left of the ${this.getName()} to consume.`;
     } else {
@@ -31,15 +31,15 @@ You fell sick.`;
     }
   }
 
-  public isConsumed() {
+  public isConsumed(): boolean {
     return this.consumed;
   }
 
-  public setConsumed(consumed: boolean) {
+  public setConsumed(consumed: boolean): void {
     this.consumed = consumed;
   }
 
-  public isSpoiled() {
+  public isSpoiled(): boolean {
     return this.spoiled;
   }
 

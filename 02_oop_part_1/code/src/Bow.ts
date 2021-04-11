@@ -10,7 +10,7 @@ export class Bow extends Weapon {
     super('bow', baseDamage, baseDurability, value, weight);
   }
 
-  public polish() {
+  public polish(): void {
     this.durabilityModifier = Math.min(
       this.MODIFIER_CHANGE_RATE + this.durabilityModifier,
       1

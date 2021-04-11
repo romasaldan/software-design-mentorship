@@ -10,7 +10,7 @@ export class Sword extends Weapon {
     super('sword', baseDamage, baseDurability, value, weight);
   }
 
-  public polish() {
+  public polish(): void {
     this.damageModifier = Math.min(
       this.MODIFIER_CHANGE_RATE + this.damageModifier,
       0.25 * this.baseDamage
