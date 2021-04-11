@@ -44,7 +44,7 @@ export abstract class Weapon extends Item {
       if (this.getCurrentDurability() > 0) {
         return this.getDamageMessage();
       } else {
-        return `${this.getDamageMessage()}. The ${this.getName()} breaks.`;
+        return `${this.getDamageMessage()} The ${this.getName()} breaks.`;
       }
     }
   }
@@ -60,6 +60,6 @@ export abstract class Weapon extends Item {
   }
 
   private changeLostDurability() {
-    this.lostDurability += this.MODIFIER_CHANGE_RATE;
+    this.lostDurability += this.MODIFIER_CHANGE_RATE * 100;
   }
 }
