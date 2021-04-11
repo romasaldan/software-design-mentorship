@@ -42,4 +42,11 @@ You fell sick.`;
   public isSpoiled(): boolean {
     return this.spoiled;
   }
+
+  toString() {
+    const spoiledStatus = this.spoiled ? 'spoiled' : 'not spoiled';
+    const consumedStatus = this.consumed ? 'consumed' : 'not consumed';
+
+    return `${super.toString()} The ${this.getName()} is ${spoiledStatus} and ${consumedStatus}`;
+  }
 }
