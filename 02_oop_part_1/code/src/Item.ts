@@ -18,11 +18,11 @@ export abstract class Item implements Comparable<Item> {
   }
 
   static get numberOfItems() {
-    return counter
+    return counter;
   }
 
   static set numberOfItems(number: number) {
-    counter = number
+    counter = number;
   }
 
   public compareTo(other: Item): number {
@@ -36,7 +36,9 @@ export abstract class Item implements Comparable<Item> {
   }
 
   protected formatNumber(number: number): string {
-    return String(Math.round(number * 10 ** this.PRECISION) / 10 ** this.PRECISION);
+    return String(
+      Math.round(number * 10 ** this.PRECISION) / 10 ** this.PRECISION
+    );
   }
 
   toString() {

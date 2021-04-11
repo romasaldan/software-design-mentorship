@@ -11,9 +11,11 @@ export class Sword extends Weapon {
   }
 
   public polish(): void {
-    this.setDamageModifier(Math.min(
-      this.MODIFIER_CHANGE_RATE * 100 + this.damageModifier,
-      0.25 * this.baseDamage
-    ));
+    this.setDamageModifier(
+      Math.min(
+        this.MODIFIER_CHANGE_RATE * 100 + this.damageModifier,
+        0.25 * this.baseDamage
+      )
+    );
   }
 }

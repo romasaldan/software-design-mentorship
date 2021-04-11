@@ -30,19 +30,19 @@ export abstract class Weapon extends Item {
   }
 
   protected setDamageModifier(damageModifier: number): void {
-    this.damageModifier = damageModifier
+    this.damageModifier = damageModifier;
   }
 
   protected setDurabilityModifier(durabilityModifier: number): void {
-    this.durabilityModifier = durabilityModifier
+    this.durabilityModifier = durabilityModifier;
   }
 
   protected getDurabilityModifier(): number {
-    return this.durabilityModifier
+    return this.durabilityModifier;
   }
 
   protected getDamageModifier(): number {
-    return this.damageModifier 
+    return this.damageModifier;
   }
 
   toString() {
@@ -55,7 +55,7 @@ export abstract class Weapon extends Item {
     if (this.getDurability() <= 0) {
       return `You can't use the ${this.getName()}, it is broken.`;
     } else {
-      return this.applyWeapon()
+      return this.applyWeapon();
     }
   }
 
@@ -79,5 +79,5 @@ export abstract class Weapon extends Item {
     this.lostDurability += this.MODIFIER_CHANGE_RATE;
   }
 
-  public abstract polish():void
+  public abstract polish(): void;
 }
