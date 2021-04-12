@@ -3,8 +3,6 @@ import {Pizza} from '../src/Pizza';
 afterAll(() => Pizza.reset());
 
 describe('Pizza', () => {
-  // const bow = new Bow(30.4219, 0.7893, 300, 2.032);
-  // const sword = new Sword(30.4219, 0.7893, 300, 2.032);
   it('should be returned a message about result of eating', () => {
     const pizza = new Pizza(3, false);
 

@@ -8,12 +8,12 @@ export class Inventory {
     this.items.push(item);
   }
 
-  public sort(comparator?: ItemWeightComparator): void {
-    if (comparator) {
-      this.items.sort(comparator.compare);
-    } else {
-      this.items.sort((first, second) => first.compareTo(second));
+  public sort(
+    comparator: ItemWeightComparator = {
+      compare: (first, second) => first.compareTo(second),
     }
+  ): void {
+    this.items.sort(comparator.compare);
   }
 
   toString() {
