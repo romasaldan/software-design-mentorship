@@ -75,6 +75,8 @@ export abstract class Item implements Comparable<Item> {
     this.weight = weight;
   }
 
+  abstract use(): string;
+
   public static reset(): void {
     Item.numberOfItems = 0;
   }
