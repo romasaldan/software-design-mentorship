@@ -1,6 +1,10 @@
 import {Item} from '../src/Item';
 
-class ItemTest extends Item {}
+class ItemTest extends Item {
+  use() {
+    return '';
+  }
+}
 
 afterAll(() => ItemTest.reset());
 
