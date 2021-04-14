@@ -11,6 +11,6 @@ export class Magazine extends Item {
   }
 
   toString() {
-    return '********* gggggggggggg *'
+    return `Magazine: ${this.title} with number of pages: ${this.pages.pages.length}`
   }
 }

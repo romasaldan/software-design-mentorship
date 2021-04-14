@@ -16,6 +16,6 @@ export class Comics extends Item {
   }
 
   toString() {
-    return ''
+    return `Comics: ${this.title} by ${this.author}, the artist is ${this.artist}, number of pages: ${this.pages.pages.length}`
   }
 }

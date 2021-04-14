@@ -8,7 +8,7 @@ export function PagesIterablereMixin<T extends Constructor>(superclass: T) {
 
     * [Symbol.iterator]() {
       for (let i = 0; i < this.pages.pages.length; i++) {
-        yield this.pages.pages[i]
+        yield `${this.toString()}, ${this.pages.pages[i].toString()}`
       }
     }
   }
