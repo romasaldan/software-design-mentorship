@@ -2,15 +2,24 @@ import { Item } from './item';
 import { Pages } from './pages';
 
 export class Magazine extends Item {
-    private title: string;
+    private _title: string;
     protected pages: Pages;
     constructor(title: string, pages: Pages) {
         super();
-        this.title = title;
+
+        this._title = title;
         this.pages = pages;
     }
 
+    get title(): string {
+        return this._title;
+    }
+
+    set title(title: string) {
+        this._title = title;
+    }
+
     toString() {
-        return `Magazine: ${this.title} with number of pages: ${this.pages.pages.length}`;
+        return `Magazine: ${this._title} with number of pages: ${this.pages.getPagesAmount()}`;
     }
 }

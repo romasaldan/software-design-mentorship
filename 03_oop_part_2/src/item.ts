@@ -1,5 +1,5 @@
-import { PagesIterablereMixin } from './pages-iterable.mixin';
+import { PagesIterableMixin } from './pages-iterable.mixin';
 
-export abstract class Item extends PagesIterablereMixin(Object) {
+export abstract class Item extends PagesIterableMixin(Object) {
     public abstract toString(): string;
 }

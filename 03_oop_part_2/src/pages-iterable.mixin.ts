@@ -1,22 +1,16 @@
-import { Page } from './page';
 import { Pages } from './pages';
 
 type Constructor = new (...args: any[]) => {};
 
-export function PagesIterablereMixin<T extends Constructor>(superclass: T) {
+export function PagesIterableMixin<T extends Constructor>(superclass: T) {
     return class extends superclass {
         protected pages!: Pages;
 
         *[Symbol.iterator]() {
-            for (let i = 0; i < this.pages.pages.length; i++) {
-                const page: Page = this.pages.pages[i];
-                const pageString: string = String(page);
+            const itemPages = this.pages.getItemPages(this);
 
-                page.toString = () => {
-                    return `${this}, ${pageString}`;
-                };
-
-                yield page;
+            for (let i = 0; i < this.pages.getPagesAmount(); i++) {
+                yield itemPages[i];
             }
         }
     };

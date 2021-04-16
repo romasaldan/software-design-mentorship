@@ -2,17 +2,34 @@ import { Item } from './item';
 import { Pages } from './pages';
 
 export class Book extends Item {
-    private title: string;
-    private author: string;
+    private _title: string;
+    private _author: string;
     protected pages: Pages;
     constructor(title: string, author: string, pages: Pages) {
         super();
-        this.title = title;
-        this.author = author;
+
+        this._title = title;
+        this._author = author;
         this.pages = pages;
     }
 
+    get author(): string {
+        return this._author;
+    }
+
+    set author(author: string) {
+        this._author = author;
+    }
+
+    get title(): string {
+        return this._title;
+    }
+
+    set title(title: string) {
+        this._title = title;
+    }
+
     toString() {
-        return `Book: ${this.title} by ${this.author} with number of pages: ${this.pages.pages.length}`;
+        return `Book: ${this._title} by ${this._author} with number of pages: ${this.pages.getPagesAmount()}`;
     }
 }

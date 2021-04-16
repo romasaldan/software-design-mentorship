@@ -1,12 +1,23 @@
+import { Item } from './item';
 import { Page } from './page';
 
 export class Pages {
-    protected _pages: Array<Page>;
-    constructor(pages: Array<Page>) {
-        this._pages = pages;
+    private pages: Page[];
+    constructor(pages: Page[]) {
+        this.pages = pages;
     }
 
-    get pages() {
-        return this._pages;
+    public getItemPages(item: Item): Page[] {
+        return this.pages.map((page) => {
+            const pageDescription = String(page);
+
+            page.toString = () => `${item}, ${pageDescription}`;
+
+            return page;
+        });
+    }
+
+    public getPagesAmount(): number {
+        return this.pages.length;
     }
 }
