@@ -1,4 +1,5 @@
 import { State, Client } from '../src/client';
+import { MockGUI } from '../src/mocks/mockGUI';
 import { Shipment } from '../src/shipment';
 
 describe('Client', () => {
@@ -9,11 +10,17 @@ describe('Client', () => {
       fromAddress: 'Hnizdychiv',
       toZipCode: '12345',
       fromZipCode: '81740',
-      weight: 10
-    }
+      weight: 10,
+    };
+    const gui = new MockGUI();
     const shipment = new Shipment(state);
+    const client = new Client(new MockGUI());
+    const spyShipment = jest.spyOn(client, 'onShip');
 
-    expect(shipment.ship()).toBe('Shipment id: 1, from: Hnizdychiv, to: Lviv, cost: 3.9$')
+    gui.trigger('ship', new Shipment(state));
+    expect(spyShipment).toHaveBeenCalled();
+    spyShipment.mockClear();
+
+    expect(shipment.ship()).toBe('Shipment id: 1, from: Hnizdychiv, to: Lviv, cost: 3.9$');
   });
-
 });

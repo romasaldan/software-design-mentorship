@@ -1,7 +1,5 @@
-import { Console } from "node:console";
-import { MockGUI } from "./mocks/mockGUI";
-import { Shipment } from "./shipment";
-
+import { MockGUI } from './mocks/mockGUI';
+import { Shipment } from './shipment';
 export interface State {
   shipmentId: number;
   toAddress: string;
@@ -9,18 +7,17 @@ export interface State {
   toZipCode: string;
   fromZipCode: string;
   weight: number;
-  marks?: string[]
+  marks?: string[];
 }
-
 export class Client {
-  gui: MockGUI;
+  private gui: MockGUI;
 
   constructor(gui: MockGUI) {
-    this.gui = new MockGUI()
-    this.gui.on('click', this.onShip.bind(this))
+    this.gui = gui;
+    this.gui.on('ship', (shipment: Shipment) => this.onShip(shipment));
   }
 
   onShip(shipment: Shipment) {
-    console.log(1)
+    console.log(shipment);
   }
 }

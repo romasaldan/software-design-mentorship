@@ -24,8 +24,7 @@ export class SafeFloatService {
   multiply(a: number, b: number): number {
     const decimalLength = this.getMaxDecimalLength(a, b);
 
-    return a * 10 ** decimalLength * (b * 10 ** decimalLength) / 10 ** (decimalLength * 2)
-
+    return (a * 10 ** decimalLength * (b * 10 ** decimalLength)) / 10 ** (decimalLength * 2);
   }
 
   divide(a: number, b: number): number {
