@@ -10,6 +10,6 @@ export class Page {
     }
 
     toString() {
-        return `here is page ${this.pageType} #${this.pageNumber} and it\'s material is ${this.pageMaterial}`;
+        return `here is page ${this.pageType} #${this.pageNumber} and it's material is ${this.pageMaterial}`;
     }
 }
