@@ -1,16 +1,16 @@
 import { IShipperCompany } from './shipper-strategies/shipper-company';
 
 export class Shipper {
-  _shipper: IShipperCompany;
+  private shipper: IShipperCompany;
   constructor(shipper: IShipperCompany) {
-    this._shipper = shipper;
+    this.shipper = shipper;
   }
 
-  set shipper(shipper: IShipperCompany) {
-    this._shipper = shipper;
+  public setShipper(shipper: IShipperCompany) {
+    this.shipper = shipper;
   }
 
   getCost(): number {
-    return 5;
+    return this.shipper.getCost();
   }
 }
