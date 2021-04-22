@@ -1,25 +1,43 @@
 import { State } from './client';
-import { SafeFloatService } from './safe-float.service';
 import { Shipper } from './shipper';
 import { AirEastShipper } from './shipper-strategies/air-east-shipper';
 import { ChigagoSprintShipper } from './shipper-strategies/chigago-sprint-shipper';
 import { PacificParcelShipper } from './shipper-strategies/pacific-parcel-shipper';
+import { Letter } from './shipper-visitors/letter';
+import { Oversized } from './shipper-visitors/oversized';
+import { Package } from './shipper-visitors/package';
+import { Visitor } from './shipper-visitors/visitor';
 
 export class Shipment {
   private static shipmentAmount = 0;
   public state: State;
-  private shipper: Shipper;
-  private safeFloatServise: SafeFloatService = new SafeFloatService();
+  private shipper!: Shipper;
+  private visitor!: Visitor;
 
   constructor(state: State) {
     this.state = state;
 
-    if (['7', '8', '9'].includes(state.fromZipCode[0])) {
+    this.initializeShipper(state.fromZipCode);
+    this.initializeVisitor(state.weight);
+  }
+
+  private initializeShipper(fromZipCode: string) {
+    if (['7', '8', '9'].includes(fromZipCode[0])) {
       this.shipper = new Shipper(new PacificParcelShipper());
-    } else if (['4', '5', '6'].includes(state.fromZipCode[0])) {
+    } else if (['4', '5', '6'].includes(fromZipCode[0])) {
       this.shipper = new Shipper(new ChigagoSprintShipper());
     } else {
       this.shipper = new Shipper(new AirEastShipper());
+    }
+  }
+
+  private initializeVisitor(weight: number) {
+    if (weight < 15) {
+      this.visitor = new Letter(weight);
+    } else if (weight < 160) {
+      this.visitor = new Package(weight);
+    } else {
+      this.visitor = new Oversized(weight);
     }
   }
 
@@ -29,7 +47,7 @@ export class Shipment {
   }
 
   private getTotalCost(): number {
-    return this.safeFloatServise.multiply(this.state.weight, this.shipper.getCost());
+    return this.shipper.getCost(this.visitor);
   }
 
   public ship(): string {

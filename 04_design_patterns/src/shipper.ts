@@ -1,16 +1,17 @@
-import { IShipperCompany } from './shipper-strategies/shipper-company';
+import { AbstractShipper } from './shipper-strategies/abstract-shipper';
+import { Visitor } from './shipper-visitors/visitor';
 
 export class Shipper {
-  private shipper: IShipperCompany;
-  constructor(shipper: IShipperCompany) {
+  private shipper: AbstractShipper;
+  constructor(shipper: AbstractShipper) {
     this.shipper = shipper;
   }
 
-  public setShipper(shipper: IShipperCompany) {
+  public setShipper(shipper: AbstractShipper) {
     this.shipper = shipper;
   }
 
-  getCost(): number {
-    return this.shipper.getCost();
+  getCost(visitor: Visitor): number {
+    return this.shipper.getCost(visitor);
   }
 }

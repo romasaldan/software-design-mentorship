@@ -1,7 +1,11 @@
-import { IShipperCompany } from './shipper-company';
+import { Visitor } from '../shipper-visitors/visitor';
+import { AbstractShipper } from './abstract-shipper';
 
-export class ChigagoSprintShipper implements IShipperCompany {
-  getCost() {
-    return 0.42;
+export class ChigagoSprintShipper extends AbstractShipper {
+  protected readonly LETTER_PRICE_PER_OUNCE = 0.42;
+  protected readonly PACKAGE_PRICE_PER_OUNCE = 0.2;
+
+  getCost(visitor: Visitor): number {
+    return visitor.visitChigagoSprint(this);
   }
 }

@@ -1,7 +1,11 @@
-import { IShipperCompany } from './shipper-company';
+import { Visitor } from '../shipper-visitors/visitor';
+import { AbstractShipper } from './abstract-shipper';
 
-export class PacificParcelShipper implements IShipperCompany {
-  getCost() {
-    return 0.51;
+export class PacificParcelShipper extends AbstractShipper {
+  protected readonly LETTER_PRICE_PER_OUNCE = 0.51;
+  protected readonly PACKAGE_PRICE_PER_OUNCE = 0.19;
+
+  getCost(visitor: Visitor): number {
+    return visitor.visitPacificParcel(this);
   }
 }
