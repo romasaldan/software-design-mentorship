@@ -5,7 +5,7 @@ import { Shipment } from '../src/shipment';
 describe('Shipment', () => {
   it('ship method should return string with id addresses and cost (air east letter)', () => {
     const state: State = {
-      shipmentId: 1,
+      shipmentId: 0,
       toAddress: 'Lviv',
       fromAddress: 'Hnizdychiv',
       toZipCode: '12345',
@@ -19,7 +19,7 @@ describe('Shipment', () => {
 
   it('ship method should return string with id addresses and cost (chigago parcel letter)', () => {
     const state: State = {
-      shipmentId: 1,
+      shipmentId: 0,
       toAddress: 'Lviv',
       fromAddress: 'Hnizdychiv',
       toZipCode: '12345',
@@ -33,7 +33,7 @@ describe('Shipment', () => {
 
   it('ship method should return string with id addresses and cost (pacific parcel letter)', () => {
     const state: State = {
-      shipmentId: 1,
+      shipmentId: 0,
       toAddress: 'Lviv',
       fromAddress: 'Hnizdychiv',
       toZipCode: '12345',
@@ -47,7 +47,7 @@ describe('Shipment', () => {
 
   it('ship method should return string with id addresses and cost (air east package)', () => {
     const state: State = {
-      shipmentId: 1,
+      shipmentId: 0,
       toAddress: 'Lviv',
       fromAddress: 'Hnizdychiv',
       toZipCode: '12345',
@@ -61,7 +61,7 @@ describe('Shipment', () => {
 
   it('ship method should return string with id addresses and cost (chigago parcel package)', () => {
     const state: State = {
-      shipmentId: 1,
+      shipmentId: 0,
       toAddress: 'Lviv',
       fromAddress: 'Hnizdychiv',
       toZipCode: '12345',
@@ -75,7 +75,7 @@ describe('Shipment', () => {
 
   it('ship method should return string with id addresses and cost (pacific parcel package)', () => {
     const state: State = {
-      shipmentId: 1,
+      shipmentId: 0,
       toAddress: 'Lviv',
       fromAddress: 'Hnizdychiv',
       toZipCode: '12345',
@@ -89,7 +89,7 @@ describe('Shipment', () => {
 
   it('ship method should return string with id addresses and cost (air east oversized)', () => {
     const state: State = {
-      shipmentId: 1,
+      shipmentId: 0,
       toAddress: 'Lviv',
       fromAddress: 'Hnizdychiv',
       toZipCode: '12345',
@@ -103,7 +103,7 @@ describe('Shipment', () => {
 
   it('ship method should return string with id addresses and cost (chigago parcel oversized)', () => {
     const state: State = {
-      shipmentId: 1,
+      shipmentId: 0,
       toAddress: 'Lviv',
       fromAddress: 'Hnizdychiv',
       toZipCode: '12345',
@@ -117,7 +117,7 @@ describe('Shipment', () => {
 
   it('ship method should return string with id addresses and cost (pacific parcel oversized)', () => {
     const state: State = {
-      shipmentId: 1,
+      shipmentId: 0,
       toAddress: 'Lviv',
       fromAddress: 'Hnizdychiv',
       toZipCode: '12345',
@@ -131,7 +131,7 @@ describe('Shipment', () => {
 
   it('ship method should return string with id addresses and cost (pacific parcel oversized)', () => {
     const state: State = {
-      shipmentId: 1,
+      shipmentId: 0,
       toAddress: 'Lviv',
       fromAddress: 'Hnizdychiv',
       toZipCode: '12345',

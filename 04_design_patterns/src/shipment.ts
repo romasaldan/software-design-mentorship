@@ -44,7 +44,7 @@ export class Shipment {
 
   public getShipmentID(): string {
     Shipment.shipmentAmount++;
-    return String(Shipment.shipmentAmount);
+    return String(this.state.shipmentId || Shipment.shipmentAmount);
   }
 
   private getTotalCost(): number {
