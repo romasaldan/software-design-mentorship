@@ -1,5 +1,4 @@
 import { EOL } from 'os';
-
 import { State } from "./client";
 import { Shipment } from "./shipment";
 

@@ -14,14 +14,22 @@ export interface State {
 }
 
 export class Client {
+  private static instance: Client
   private gui: MockGUI;
 
   constructor(gui: MockGUI) {
     this.gui = gui;
     this.gui.on('ship', (shipment: Shipment) => this.onShip(shipment));
+
+    if (Client.instance) {
+
+      return Client.instance
+    } else {
+      Client.instance = this
+    }
   }
 
   onShip(shipment: Shipment) {
-    console.log(shipment);
+    console.log(shipment.ship());
   }
 }
