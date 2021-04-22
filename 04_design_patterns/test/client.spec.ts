@@ -1,5 +1,5 @@
 import { State, Client } from '../src/client';
-import { MockGUI } from '../src/mocks/mockGUI';
+import { MockGUI } from './mocks/mockGUI';
 import { Shipment } from '../src/shipment';
 
 describe('Client', () => {

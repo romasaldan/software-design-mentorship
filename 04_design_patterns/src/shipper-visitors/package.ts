@@ -1,4 +1,4 @@
-import { SafeFloatService } from '../safe-float.service';
+import { SafeFloatService } from '../utils/safe-float.service';
 import { AbstractShipper } from '../shipper-strategies/abstract-shipper';
 import { Visitor } from './visitor';
 

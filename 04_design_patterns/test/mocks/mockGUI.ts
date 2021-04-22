@@ -1,4 +1,4 @@
-import { Shipment } from '../shipment';
+import { Shipment } from '../../src/shipment';
 
 export class MockGUI {
   private static singleton: MockGUI;

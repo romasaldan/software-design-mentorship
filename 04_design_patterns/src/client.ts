@@ -1,5 +1,8 @@
-import { MockGUI } from './mocks/mockGUI';
+import { MockGUI } from '../test/mocks/mockGUI';
 import { Shipment } from './shipment';
+
+type Marks = "Fragile" | "Do Not Leave" | "Return Receipt Requested"
+
 export interface State {
   shipmentId: number;
   toAddress: string;
@@ -7,8 +10,9 @@ export interface State {
   toZipCode: string;
   fromZipCode: string;
   weight: number;
-  marks?: string[];
+  marks?: Marks[];
 }
+
 export class Client {
   private gui: MockGUI;
 

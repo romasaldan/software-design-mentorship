@@ -1,3 +1,4 @@
+import { EOL } from 'os';
 import { State } from '../src/client';
 import { Shipment } from '../src/shipment';
 
@@ -127,4 +128,20 @@ describe('Shipment', () => {
 
     expect(shipment.ship()).toBe('Shipment id: 9, from: Hnizdychiv, to: Lviv, cost: 42$');
   });
+
+  it('ship method should return string with id addresses and cost (pacific parcel oversized)', () => {
+    const state: State = {
+      shipmentId: 1,
+      toAddress: 'Lviv',
+      fromAddress: 'Hnizdychiv',
+      toZipCode: '12345',
+      fromZipCode: '81740',
+      weight: 200,
+      marks: ["Fragile", "Do Not Leave", "Return Receipt Requested"]
+    };
+    const shipment = new Shipment(state);
+
+    expect(shipment.ship()).toBe(`Shipment id: 10, from: Hnizdychiv, to: Lviv, cost: 42$${EOL}**MARK FRAGILE**${EOL}**MARK DO NOT LEAVE**${EOL}**MARK RETURN RECEIPT REQUESTED**`);
+  });
+
 });

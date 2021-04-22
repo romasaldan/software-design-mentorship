@@ -1,3 +1,4 @@
+import { EOL } from 'os';
 import { State } from './client';
 import { Shipper } from './shipper';
 import { AirEastShipper } from './shipper-strategies/air-east-shipper';
@@ -8,9 +9,32 @@ import { Oversized } from './shipper-visitors/oversized';
 import { Package } from './shipper-visitors/package';
 import { Visitor } from './shipper-visitors/visitor';
 
+function addMarks(target: Shipment,
+  _propertyKey: string,
+  descriptor: PropertyDescriptor
+) {
+  const originalMethod = descriptor.value;
+
+  descriptor.value = function () {
+    const result = originalMethod.apply(this);
+    const state: State = target.getState.call(this);
+
+    if (state.marks) {
+      const marksDescription = state.marks.map(mark => `**MARK ${mark.toUpperCase()}**`).join(EOL);
+
+      return result + EOL + marksDescription;
+    } else {
+      return result
+    }
+  };
+
+  return descriptor;
+}
+
+
 export class Shipment {
   private static shipmentAmount = 0;
-  public state: State;
+  private state: State;
   private shipper!: Shipper;
   private visitor!: Visitor;
 
@@ -50,9 +74,13 @@ export class Shipment {
     return this.shipper.getCost(this.visitor);
   }
 
+  getState() {
+    return this.state
+  }
+
+  @addMarks
   public ship(): string {
-    return `Shipment id: ${this.getShipmentID()}, from: ${this.state.fromAddress}, to: ${
-      this.state.toAddress
-    }, cost: ${this.getTotalCost()}$`;
+    return `Shipment id: ${this.getShipmentID()}, from: ${this.state.fromAddress}, to: ${this.state.toAddress
+      }, cost: ${this.getTotalCost()}$`;
   }
 }
