@@ -11,7 +11,7 @@ export class Shipper {
     this.shipper = shipper;
   }
 
-  getCost(visitor: Visitor): number {
+  public getCost(visitor: Visitor): number {
     return this.shipper.getCost(visitor);
   }
 }

@@ -1,5 +1,5 @@
 import { addMarks } from './add-marks';
-import { State } from './client';
+import { Marks, State } from './client';
 import { Shipper } from './shipper';
 import { AirEastShipper } from './shipper-strategies/air-east-shipper';
 import { ChigagoSprintShipper } from './shipper-strategies/chigago-sprint-shipper';
@@ -22,7 +22,7 @@ export class Shipment {
     this.initializeVisitor(state.weight);
   }
 
-  private initializeShipper(fromZipCode: string) {
+  private initializeShipper(fromZipCode: string): void {
     if (['7', '8', '9'].includes(fromZipCode[0])) {
       this.shipper = new Shipper(new PacificParcelShipper());
     } else if (['4', '5', '6'].includes(fromZipCode[0])) {
@@ -32,7 +32,7 @@ export class Shipment {
     }
   }
 
-  private initializeVisitor(weight: number) {
+  private initializeVisitor(weight: number): void {
     if (weight < 15) {
       this.visitor = new Letter(weight);
     } else if (weight < 160) {
@@ -51,8 +51,28 @@ export class Shipment {
     return this.shipper.getCost(this.visitor);
   }
 
-  getState() {
+  getState(): State {
     return this.state
+  }
+
+  public setToAddres(address: string): void {
+    this.state.toAddress = address;
+  }
+
+  public setFromAddres(address: string): void {
+    this.state.fromAddress = address
+  }
+
+  public setToZipCode(zipCode: string): void {
+    this.state.toZipCode = zipCode
+  }
+
+  public setFromZipCode(zipCode: string): void {
+    this.state.fromZipCode = zipCode
+  }
+
+  public setMarks(marks: Marks[]): void {
+    this.state.marks = marks
   }
 
   @addMarks

@@ -1,7 +1,7 @@
 import { MockGUI } from '../test/mocks/mockGUI';
 import { Shipment } from './shipment';
 
-type Marks = "Fragile" | "Do Not Leave" | "Return Receipt Requested"
+export type Marks = "Fragile" | "Do Not Leave" | "Return Receipt Requested"
 
 export interface State {
   shipmentId: number;
@@ -29,7 +29,7 @@ export class Client {
     }
   }
 
-  onShip(shipment: Shipment) {
+  public onShip(shipment: Shipment): void {
     console.log(shipment.ship());
   }
 }

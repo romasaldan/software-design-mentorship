@@ -8,7 +8,7 @@ export function addMarks(target: Shipment,
 ) {
   const originalMethod = descriptor.value;
 
-  descriptor.value = function () {
+  descriptor.value = function (): string {
     const result = originalMethod.apply(this);
     const state: State = target.getState.call(this);
 

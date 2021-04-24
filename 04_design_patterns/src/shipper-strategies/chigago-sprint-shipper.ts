@@ -5,7 +5,7 @@ export class ChigagoSprintShipper extends AbstractShipper {
   protected readonly LETTER_PRICE_PER_OUNCE = 0.42;
   protected readonly PACKAGE_PRICE_PER_OUNCE = 0.2;
 
-  getCost(visitor: Visitor): number {
+  public getCost(visitor: Visitor): number {
     return visitor.visitChigagoSprint(this);
   }
 }

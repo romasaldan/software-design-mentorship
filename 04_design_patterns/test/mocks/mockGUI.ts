@@ -2,6 +2,8 @@ import { Shipment } from '../../src/shipment';
 
 export class MockGUI {
   private static singleton: MockGUI;
+  private listeners: { [key: string]: Array<(state: Shipment) => void> } = {};
+
   constructor() {
     if (MockGUI.singleton) {
       return MockGUI.singleton;
@@ -10,9 +12,7 @@ export class MockGUI {
     }
   }
 
-  private listeners: { [key: string]: Array<(state: Shipment) => void> } = {};
-
-  on(eventType: string, callback: (state: Shipment) => void) {
+  public on(eventType: string, callback: (state: Shipment) => void) {
     if (this.listeners[eventType]) {
       this.listeners[eventType].push(callback);
     } else {
@@ -20,7 +20,7 @@ export class MockGUI {
     }
   }
 
-  trigger(eventType: string, state: Shipment) {
+  public trigger(eventType: string, state: Shipment) {
     this.listeners[eventType].forEach((callback: (state: Shipment) => void) => {
       callback(state);
     });

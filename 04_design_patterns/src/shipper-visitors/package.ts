@@ -10,15 +10,15 @@ export class Package implements Visitor {
     this.weight = weight;
   }
 
-  visitAirEast(company: AbstractShipper) {
+  public visitAirEast(company: AbstractShipper) {
     return this.safeFloatServise.multiply(company.getPackagePricePerOunce(), this.weight);
   }
 
-  visitChigagoSprint(company: AbstractShipper) {
+  public visitChigagoSprint(company: AbstractShipper) {
     return this.safeFloatServise.multiply(company.getPackagePricePerOunce(), this.weight);
   }
 
-  visitPacificParcel(company: AbstractShipper) {
+  public visitPacificParcel(company: AbstractShipper) {
     return this.safeFloatServise.multiply(company.getPackagePricePerOunce(), this.weight);
   }
 }

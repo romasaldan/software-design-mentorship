@@ -10,15 +10,15 @@ export class Letter implements Visitor {
     this.weight = weight;
   }
 
-  visitAirEast(company: AbstractShipper) {
+  public visitAirEast(company: AbstractShipper) {
     return this.safeFloatServise.multiply(company.getLetterPricePerOunce(), this.weight);
   }
 
-  visitChigagoSprint(company: AbstractShipper) {
+  public visitChigagoSprint(company: AbstractShipper) {
     return this.safeFloatServise.multiply(company.getLetterPricePerOunce(), this.weight);
   }
 
-  visitPacificParcel(company: AbstractShipper) {
+  public visitPacificParcel(company: AbstractShipper) {
     return this.safeFloatServise.multiply(company.getLetterPricePerOunce(), this.weight);
   }
 }

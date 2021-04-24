@@ -9,25 +9,25 @@ export class SafeFloatService {
     return Math.max(this.getDecimalLength(a), this.getDecimalLength(b));
   }
 
-  add(a: number, b: number): number {
+  public add(a: number, b: number): number {
     const decimalLength = this.getMaxDecimalLength(a, b);
 
     return (a * 10 ** decimalLength + b * 10 ** decimalLength) / 10 ** decimalLength;
   }
 
-  substract(a: number, b: number): number {
+  public substract(a: number, b: number): number {
     const decimalLength = this.getMaxDecimalLength(a, b);
 
     return (a * 10 ** decimalLength - b * 10 ** decimalLength) / 10 ** decimalLength;
   }
 
-  multiply(a: number, b: number): number {
+  public multiply(a: number, b: number): number {
     const decimalLength = this.getMaxDecimalLength(a, b);
 
     return (a * 10 ** decimalLength * (b * 10 ** decimalLength)) / 10 ** (decimalLength * 2);
   }
 
-  divide(a: number, b: number): number {
+  public divide(a: number, b: number): number {
     const decimalLength = this.getMaxDecimalLength(a, b);
 
     return (a * 10 ** decimalLength) / (b * 10 ** decimalLength);
