@@ -13,7 +13,7 @@ describe('Client', () => {
       weight: 10,
     };
     const gui = MockGUI.getInstance();
-    const client = Client.getInstance(gui)
+    const client = Client.getInstance(gui);
     const spyShipment = jest.spyOn(client, 'onShip');
 
     gui.trigger('ship', new Shipment(state));

@@ -137,11 +137,12 @@ describe('Shipment', () => {
       toZipCode: '12345',
       fromZipCode: '81740',
       weight: 200,
-      marks: ["Fragile", "Do Not Leave", "Return Receipt Requested"]
+      marks: ['Fragile', 'Do Not Leave', 'Return Receipt Requested'],
     };
     const shipment = new Shipment(state);
 
-    expect(shipment.ship()).toBe(`Shipment id: 10, from: Hnizdychiv, to: Lviv, cost: 42$${EOL}**MARK FRAGILE**${EOL}**MARK DO NOT LEAVE**${EOL}**MARK RETURN RECEIPT REQUESTED**`);
+    expect(shipment.ship()).toBe(
+      `Shipment id: 10, from: Hnizdychiv, to: Lviv, cost: 42$${EOL}**MARK FRAGILE**${EOL}**MARK DO NOT LEAVE**${EOL}**MARK RETURN RECEIPT REQUESTED**`
+    );
   });
-
 });

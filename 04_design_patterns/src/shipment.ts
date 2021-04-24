@@ -18,11 +18,11 @@ export class Shipment {
   constructor(state: State) {
     this.state = state;
 
-    this.initializeShipper(state.fromZipCode);
+    this.setStrategy(state.fromZipCode);
     this.initializeVisitor(state.weight);
   }
 
-  private initializeShipper(fromZipCode: string): void {
+  private setStrategy(fromZipCode: string): void {
     if (['7', '8', '9'].includes(fromZipCode[0])) {
       this.shipper = new Shipper(new PacificParcelShipper());
     } else if (['4', '5', '6'].includes(fromZipCode[0])) {
@@ -52,7 +52,7 @@ export class Shipment {
   }
 
   getState(): State {
-    return this.state
+    return this.state;
   }
 
   public setToAddres(address: string): void {
@@ -60,24 +60,26 @@ export class Shipment {
   }
 
   public setFromAddres(address: string): void {
-    this.state.fromAddress = address
+    this.state.fromAddress = address;
   }
 
   public setToZipCode(zipCode: string): void {
-    this.state.toZipCode = zipCode
+    this.state.toZipCode = zipCode;
   }
 
   public setFromZipCode(zipCode: string): void {
-    this.state.fromZipCode = zipCode
+    this.state.fromZipCode = zipCode;
+    this.setStrategy(zipCode);
   }
 
   public setMarks(marks: Marks[]): void {
-    this.state.marks = marks
+    this.state.marks = marks;
   }
 
   @addMarks
   public ship(): string {
-    return `Shipment id: ${this.getShipmentID()}, from: ${this.state.fromAddress}, to: ${this.state.toAddress
-      }, cost: ${this.getTotalCost()}$`;
+    return `Shipment id: ${this.getShipmentID()}, from: ${this.state.fromAddress}, to: ${
+      this.state.toAddress
+    }, cost: ${this.getTotalCost()}$`;
   }
 }
