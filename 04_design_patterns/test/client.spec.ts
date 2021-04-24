@@ -12,8 +12,8 @@ describe('Client', () => {
       fromZipCode: '11740',
       weight: 10,
     };
-    const gui = new MockGUI();
-    const client = new Client(new MockGUI());
+    const gui = MockGUI.getInstance();
+    const client = Client.getInstance(gui)
     const spyShipment = jest.spyOn(client, 'onShip');
 
     gui.trigger('ship', new Shipment(state));
