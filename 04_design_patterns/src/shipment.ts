@@ -51,15 +51,15 @@ export class Shipment {
     return this.shipper.getCost(this.visitor);
   }
 
-  getState(): State {
+  public getState(): State {
     return this.state;
   }
 
-  public setToAddres(address: string): void {
+  public setToAddress(address: string): void {
     this.state.toAddress = address;
   }
 
-  public setFromAddres(address: string): void {
+  public setFromAddress(address: string): void {
     this.state.fromAddress = address;
   }
 
