@@ -1,44 +1,39 @@
 import { addMarks } from './add-marks';
 import { Marks, State } from './client';
-import { Shipper } from './shipper';
-import { AirEastShipper } from './shipper-strategies/air-east-shipper';
-import { ChigagoSprintShipper } from './shipper-strategies/chigago-sprint-shipper';
-import { PacificParcelShipper } from './shipper-strategies/pacific-parcel-shipper';
-import { Letter } from './shipper-visitors/letter';
-import { Oversized } from './shipper-visitors/oversized';
-import { Package } from './shipper-visitors/package';
-import { Visitor } from './shipper-visitors/visitor';
+import { AirEastShipper } from './factory/air-east-shipper/air-east-shipper';
+import { ChigagoSprintShipper } from './factory/chigaco-sprint-shipper/chigaco-sprint-shipper';
+import { Product } from './factory/interfaces/product';
+import { ShipperFactory } from './factory/interfaces/shipper-factory';
+import { PacificParcelShipper } from './factory/pacific-parcel-shipper/pacific-parcel';
 
 export class Shipment {
   private static shipmentAmount = 0;
   private state: State;
-  private shipper!: Shipper;
-  private visitor!: Visitor;
+  private factory!: ShipperFactory;
 
   constructor(state: State) {
     this.state = state;
 
-    this.setStrategy(state.fromZipCode);
-    this.initializeVisitor(state.weight);
+    this.setFactory(state.fromZipCode);
   }
 
-  private setStrategy(fromZipCode: string): void {
-    if (['7', '8', '9'].includes(fromZipCode[0])) {
-      this.shipper = new Shipper(new PacificParcelShipper());
-    } else if (['4', '5', '6'].includes(fromZipCode[0])) {
-      this.shipper = new Shipper(new ChigagoSprintShipper());
+  private setFactory(fromZipCode: string): void {
+    if ((/^[7-9]/).test(fromZipCode)) {
+      this.factory = new PacificParcelShipper();
+    } else if ((/^[4-6]/).test(fromZipCode)) {
+      this.factory = new ChigagoSprintShipper();
     } else {
-      this.shipper = new Shipper(new AirEastShipper());
+      this.factory = new AirEastShipper();
     }
   }
 
-  private initializeVisitor(weight: number): void {
-    if (weight < 15) {
-      this.visitor = new Letter(weight);
-    } else if (weight < 160) {
-      this.visitor = new Package(weight);
+  private getProduct(): Product {
+    if (this.state.weight < 15) {
+      return this.factory.createLetter()
+    } else if (this.state.weight < 160) {
+      return this.factory.createPackage()
     } else {
-      this.visitor = new Oversized(weight);
+      return this.factory.createOversized()
     }
   }
 
@@ -48,7 +43,7 @@ export class Shipment {
   }
 
   private getTotalCost(): number {
-    return this.shipper.getCost(this.visitor);
+    return this.getProduct().getCost(this.state.weight)
   }
 
   public getState(): State {
@@ -69,7 +64,7 @@ export class Shipment {
 
   public setFromZipCode(zipCode: string): void {
     this.state.fromZipCode = zipCode;
-    this.setStrategy(zipCode);
+    this.setFactory(zipCode);
   }
 
   public setMarks(marks: Marks[]): void {
@@ -78,8 +73,7 @@ export class Shipment {
 
   @addMarks
   public ship(): string {
-    return `Shipment id: ${this.getShipmentID()}, from: ${this.state.fromAddress}, to: ${
-      this.state.toAddress
-    }, cost: ${this.getTotalCost()}$`;
+    return `Shipment id: ${this.getShipmentID()}, from: ${this.state.fromAddress}, to: ${this.state.toAddress
+      }, cost: ${this.getTotalCost()}$`;
   }
 }
