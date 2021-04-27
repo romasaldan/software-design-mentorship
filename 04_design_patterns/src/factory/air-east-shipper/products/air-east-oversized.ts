@@ -1,10 +1,9 @@
-import { SafeFloatService } from "../../../utils/safe-float.service";
-import { Product } from "../../interfaces/product";
+import { Product } from '../../product';
 
-export class AirEastOversized implements Product {
-  private safeFloatservice = new SafeFloatService();
+export class AirEastOversized extends Product {
+  protected PRICE_PER_OUNCE = 0.25;
 
   getCost(weight: number) {
-    return this.safeFloatservice.add(this.safeFloatservice.multiply(weight, 0.25), 10)
+    return this.safeFloatservice.add(super.getCost(weight), 10);
   }
 }

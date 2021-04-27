@@ -1,10 +1,5 @@
-import { SafeFloatService } from "../../../utils/safe-float.service";
-import { Product } from "../../interfaces/product";
+import { Product } from '../../product';
 
-export class ChigacoSprintLetter implements Product {
-  private safeFloatservice = new SafeFloatService();
-
-  getCost(weight: number) {
-    return (this.safeFloatservice.multiply(weight, 0.42))
-  }
+export class ChigacoSprintLetter extends Product {
+  protected PRICE_PER_OUNCE = 0.42;
 }

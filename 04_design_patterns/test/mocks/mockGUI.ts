@@ -4,7 +4,7 @@ export class MockGUI {
   private static singleton: MockGUI;
   private listeners: { [key: string]: Array<(state: Shipment) => void> } = {};
 
-  private constructor() { }
+  private constructor() {}
 
   public static getInstance(): MockGUI {
     if (MockGUI.singleton === undefined) {
