@@ -1,4 +1,5 @@
-import {CurrencyModel, ModelItem} from './currency-model';
+import {ModelItem} from '../types/model';
+import {CurrencyModel} from './currency-model';
 
 export class MultipleCurrencyAmountModel extends CurrencyModel {
     updateModelByAmount(_currency: string, amount: number) {
@@ -7,7 +8,7 @@ export class MultipleCurrencyAmountModel extends CurrencyModel {
             modelItem.price = this.safeFloatService.round(this.safeFloatService.divide(amount, modelItem.rate), 2);
         });
 
-        this.notify('model-changed');
+        this.notify('model-changed', this.model);
     }
 
     updateModelByPrice(_currency: string, price: number) {
@@ -16,6 +17,6 @@ export class MultipleCurrencyAmountModel extends CurrencyModel {
             modelItem.price = price;
         });
 
-        this.notify('model-changed');
+        this.notify('model-changed', this.model);
     }
 }

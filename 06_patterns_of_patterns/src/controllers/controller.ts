@@ -1,5 +1,6 @@
 import {REQUESTED_CURRENCY} from '../mocks/requested-currency';
 import {CurrencyModel} from '../models/currency-model';
+import {ModelItem} from '../types/model';
 import {View} from '../views/view';
 
 export class Controller {
@@ -10,6 +11,10 @@ export class Controller {
 
         this.view.subscribe('currency-price-edited', (details: {currency: string; price: number}) => {
             this.model.notify('currency-price-edited', details);
+        });
+
+        this.model.subscribe('model-changed', (modelItems: ModelItem[]) => {
+            this.view.notify('model-changed', modelItems);
         });
     }
 

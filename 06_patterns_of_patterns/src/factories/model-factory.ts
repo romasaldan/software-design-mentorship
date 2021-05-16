@@ -1,4 +1,3 @@
-import {CurrencyRate} from '../models/currency-model';
 import {MultipleCurrencyAmountModel} from '../models/multiple-currency-amount-model';
 import {SingleCurrencyAmountModel} from '../models/single-currency-amount-model';
 import {ModelType} from '../types/model';

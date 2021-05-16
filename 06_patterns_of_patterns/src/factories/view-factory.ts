@@ -4,12 +4,12 @@ import {RangeView} from '../views/range-view';
 import {ViewType} from '../types/views';
 
 export class ViewFactory {
-    public static createView(query: ViewType, model: CurrencyModel) {
+    public static createView(query: ViewType) {
         switch (query) {
             case 'range':
-                return new RangeView(model);
+                return new RangeView();
             case 'input':
-                return new InputView(model);
+                return new InputView();
 
             default:
                 throw Error('view has not implemented yet');

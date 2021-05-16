@@ -1,4 +1,5 @@
 import {REQUESTED_CURRENCY} from '../mocks/requested-currency';
+import {ModelItem} from '../types/model';
 import {View} from './view';
 
 export class InputView extends View {
@@ -10,9 +11,8 @@ export class InputView extends View {
         return Array.from(document.getElementsByClassName('currency-price'));
     }
 
-    protected getTemplate(): string {
-        return this.model
-            .getModel()
+    protected getTemplate(modelItems: ModelItem[]): string {
+        return modelItems
             .map(
                 (el) => `
                     <fieldset style="width: 450px">

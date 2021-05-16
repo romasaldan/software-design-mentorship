@@ -1,4 +1,5 @@
 import {REQUESTED_CURRENCY} from '../mocks/requested-currency';
+import {ModelItem} from '../types/model';
 import {SafeFloatService} from '../utils/safe-float-service';
 import {View} from './view';
 
@@ -24,9 +25,8 @@ export class RangeView extends View {
         return this.safeFloatService.round(this.safeFloatService.divide(1000, rate), 2);
     }
 
-    protected getTemplate(): string {
-        return this.model
-            .getModel()
+    protected getTemplate(modelItems: ModelItem[]): string {
+        return modelItems
             .map(
                 (el) => `
             <fieldset>

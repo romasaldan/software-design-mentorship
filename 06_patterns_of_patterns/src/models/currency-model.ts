@@ -1,16 +1,6 @@
+import {CurrencyRate, ModelItem} from '../types/model';
 import {PubSub} from '../utils/pub-sub';
 import {SafeFloatService} from '../utils/safe-float-service';
-
-export interface CurrencyRate {
-    name: string;
-    rate: number;
-    fullName: string;
-}
-
-export interface ModelItem extends CurrencyRate {
-    amount: number;
-    price: number;
-}
 
 export abstract class CurrencyModel extends PubSub {
     protected model!: ModelItem[];
@@ -42,7 +32,7 @@ export abstract class CurrencyModel extends PubSub {
 
         this.setInitialModel();
 
-        this.notify('model-changed');
+        this.notify<ModelItem[]>('model-changed', this.model);
     }
 
     getModel() {

@@ -1,16 +1,14 @@
-import {CurrencyModel} from '../models/currency-model';
+import {ModelItem} from '../types/model';
 import {PubSub} from '../utils/pub-sub';
 
 export abstract class View extends PubSub {
     protected abstract amountInputs: Element[];
     protected abstract priceInputs: Element[];
-    protected model: CurrencyModel;
 
-    constructor(model: CurrencyModel) {
+    constructor() {
         super();
-        this.model = model;
 
-        this.model.subscribe('model-changed', this.show.bind(this));
+        this.subscribe('model-changed', this.show.bind(this));
     }
 
     protected get wrapper() {
@@ -30,10 +28,10 @@ export abstract class View extends PubSub {
         return document.getElementById('root');
     }
 
-    public show() {
+    public show(modelItems: ModelItem[]) {
         if (this.rootElement) {
             const wrapper = this.wrapper;
-            wrapper.innerHTML = this.getTemplate();
+            wrapper.innerHTML = this.getTemplate(modelItems);
 
             this.rootElement.append(wrapper);
 
@@ -65,7 +63,7 @@ export abstract class View extends PubSub {
         });
     };
 
-    protected abstract getTemplate(): string;
+    protected abstract getTemplate(modelItems: ModelItem[]): string;
 
     public hide() {
         const wrapper = this.wrapper;

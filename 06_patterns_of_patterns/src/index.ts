@@ -14,7 +14,7 @@ const backButton = new Back();
 form.subscribe('selected', (details: {model: ModelType; view: ViewType}) => {
     form.hide();
     const model: CurrencyModel = ModelFactory.createModel(details.model);
-    const view: View = ViewFactory.createView(details.view, model);
+    const view: View = ViewFactory.createView(details.view);
     const controller = new Controller(view, model);
 
     backButton.subscribe('back-clicked', () => {
