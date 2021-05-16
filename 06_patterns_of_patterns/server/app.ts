@@ -1,13 +1,14 @@
 import * as http from 'http';
+import {UAHRates} from './exchange-rates';
 const hostname = '127.0.0.1';
 const port = 3000;
 
 const server = http.createServer((req, res) => {
-    if (req.url === '/exchange/usd') {
+    if (req.url === '/rates/UAH') {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/json');
         res.setHeader('Access-Control-Allow-Origin', '*');
-        res.end(JSON.stringify({}));
+        res.end(JSON.stringify(UAHRates));
 
         return;
     }
