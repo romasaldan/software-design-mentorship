@@ -5,10 +5,6 @@ export class Form extends PubSub {
     private selectedModelMode: string = 'single';
     private wrapper = document.createElement('div');
 
-    constructor() {
-        super();
-    }
-
     private get goToButton() {
         return document.getElementById('toconverter');
     }

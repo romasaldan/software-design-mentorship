@@ -3,10 +3,6 @@ import {PubSub} from '../utils/pub-sub';
 export class Back extends PubSub {
     private wrapper = document.createElement('div');
 
-    constructor() {
-        super();
-    }
-
     private get backButton() {
         return document.getElementById('back');
     }

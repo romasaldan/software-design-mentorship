@@ -1,6 +1,6 @@
 import {REQUESTED_CURRENCY} from '../mocks/requested-currency';
 import {CurrencyModel} from '../models/currency-model';
-import {ModelItem} from '../types/model';
+import {CurrencyRate, ModelItem} from '../types/model';
 import {View} from '../views/view';
 
 export class Controller {
@@ -27,10 +27,10 @@ export class Controller {
     }
 
     async initialize() {
-        const rates = await fetch(`http://127.0.0.1:3000/rates/${REQUESTED_CURRENCY.name}`).then((resp: Response) =>
-            resp.json()
-        );
-        this.model.setItems(rates);
+        const response = await fetch(`http://127.0.0.1:3000/rates/${REQUESTED_CURRENCY.name}`);
+        const rates = await response.json();
+
+        this.model.setItems(rates as unknown as CurrencyRate[]);
     }
 
     hide() {
