@@ -1,0 +1,27 @@
+{
+  "name": "06_patterns_of_patterns",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch",
+    "server": "ts-node ./server/app.ts",
+    "build": "webpack --watch",
+    "start": "concurrently \"npm run server\" \"npm run build\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.0.2",
+    "concurrently": "^6.1.0",
+    "html-webpack-plugin": "^5.3.1",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.6",
+    "ts-loader": "^9.1.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4",
+    "webpack": "^5.37.0",
+    "webpack-cli": "^4.7.0"
+  }
+}
