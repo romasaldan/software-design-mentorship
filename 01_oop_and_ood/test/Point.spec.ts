@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Point } from '../src/point';
+import {Point} from '../src/Point';
 
 describe('Point', () => {
     it('should not fail to be created', () => {
