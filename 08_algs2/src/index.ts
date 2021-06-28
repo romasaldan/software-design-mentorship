@@ -16,7 +16,7 @@ form.subscribe('added', (route: WeightedGraphItem) => {
     } else {
         alert('value not valid');
     }
-    console.log(state);
+
     const list = new ElementsList(state);
     document.getElementById('root')?.append(list.getElement());
 
