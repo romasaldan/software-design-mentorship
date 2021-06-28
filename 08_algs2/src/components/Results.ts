@@ -1,4 +1,5 @@
 import {CitiesGraph, WeightedGraphItem} from '../graph-lib/CitiesGraph';
+import {extractNames} from '../utils/extractNames';
 import {PubSub} from '../utils/PubSub';
 
 export interface TableData {
@@ -34,6 +35,7 @@ export class Results extends PubSub {
             ? `
               <div style="margin: 20px">
                 <div>
+                  <div>Міста: ${extractNames(this.items).join(', ')}</div>
                   <div>Матриця</div>
                   ${this.graph.getGraphView()}
                 </div>
