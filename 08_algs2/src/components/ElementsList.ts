@@ -1,8 +1,6 @@
 import {WeightedGraphItem} from '../graph-lib/CitiesGraph';
+import {extractNames} from '../utils/extractNames';
 import {PubSub} from '../utils/PubSub';
-
-export const extractNames = (items: WeightedGraphItem[]) =>
-    [...new Set([...items.map((item) => item.to), ...items.map((item) => item.from)])].sort();
 
 const getTableRow = (item: WeightedGraphItem) => `
     <tr>

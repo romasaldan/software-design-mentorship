@@ -1,3 +1,4 @@
+import {extractNames} from '../utils/extractNames';
 import {AdjacencyMatrix} from './AdjacencyMatrix';
 import {dijkstra, printPath} from './dijkstra';
 
@@ -17,7 +18,7 @@ export class CitiesGraph {
     }
 
     private getRegisteredNames(items: WeightedGraphItem[]) {
-        return [...new Set([...items.map((item) => item.to), ...items.map((item) => item.from)])].sort();
+        return extractNames(items);
     }
 
     private formMatrix(edges: WeightedGraphItem[]) {
