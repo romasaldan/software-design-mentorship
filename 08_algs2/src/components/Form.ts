@@ -52,7 +52,7 @@ export class Form extends PubSub {
               <input type="number" id="weight" value="${this.internalState.weight}">
             </div>
 
-            <button id="addButton">Додати пункт доставки</button>
+            <button id="addButton">Додати новий маршрут</button>
           </div>`;
     }
 
