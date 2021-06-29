@@ -1,0 +1,33 @@
+{
+  "name": "08_algs2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch",
+    "start": "webpack --watch",
+    "build": "webpack --env goal=deploy",
+    "compile": "ts-node ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/katex": "^0.11.0",
+    "@types/node": "^15.12.4",
+    "css-loader": "^5.2.6",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.1",
+    "jest": "^27.0.4",
+    "style-loader": "^2.0.0",
+    "ts-jest": "^27.0.3",
+    "ts-loader": "^9.2.3",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.4",
+    "webpack": "^5.39.1",
+    "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "katex": "^0.13.11"
+  }
+}
